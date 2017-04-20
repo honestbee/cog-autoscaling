@@ -2,10 +2,10 @@
 cog_bundle_version: 4
 name: autoscaling
 description: Interact with autoscaling in AWS
-version: 0.0.2
+version: 0.0.3
 docker:
   image: quay.io/honestbee/cog-autoscaling
-  tag: 0.0.2
+  tag: 0.0.3
 commands:
   group:
     description: Manages an autoscaling group

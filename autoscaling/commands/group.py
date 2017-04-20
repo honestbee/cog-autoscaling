@@ -5,8 +5,9 @@ import autoscaling.util as util
 class Group(AutoscalingBase):
   def __init__(self):
     super().__init__()
-    self.access_key_id = None
-    self.secret_access_key = None
+    self.aws_access_key_id = None
+    self.aws_secret_access_key = None
+    self.region = None
 
   def run(self):
     handler = self.parse_subcommand_()
