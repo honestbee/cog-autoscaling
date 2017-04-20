@@ -19,7 +19,7 @@ class Group(AutoscalingBase):
     for group in response['AutoscalingGroups']:
       print(group['AutoScalingGroupName'])
 
-  def set_desired(self):
+  def scale(self):
     response = self.client.set_desired_capacity(
       AutoScalingGroupName = self.request.options["name"],
       DesiredCapacity = self.request.options["desired"],
@@ -33,6 +33,6 @@ class Group(AutoscalingBase):
       return self.list
     if self.request.args[0] == "list":
       return self.list
-    if self.request.args[0] == "set-desired":
-      return self.set_desired
+    if self.request.args[0] == "scale":
+      return self.scale
     self.fail("Unknown subcommand: '%s'" % self.request.args[0])
