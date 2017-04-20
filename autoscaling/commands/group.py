@@ -5,9 +5,9 @@ from autoscaling.commands.base import AutoscalingBase
 class Group(AutoscalingBase):
   def __init__(self):
     super().__init__()
-    self.aws_access_key_id = os.getenv('AWS_ACCESS_KEY_ID', None)
-    self.aws_secret_access_key = os.getenv('AWS_SECRET_ACCESS_KEY', None)
-    self.aws_default_region = os.getenv('AWS_DEFAULT_REGION', None)
+    self.aws_access_key_id = None
+    self.aws_secret_access_key = None
+    self.aws_default_region = None
     self.client = boto3.client('autoscaling')
 
   def run(self):
