@@ -1,3 +1,4 @@
+import os
 from cog.command import Command
 
 class AutoscalingBase(Command):
