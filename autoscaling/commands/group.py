@@ -15,7 +15,7 @@ class Group(AutoscalingBase):
 
   def list(self):
     response = self.client.describe_auto_scaling_groups()
-    for group in response['AutoscalingGroups']:
+    for group in response['AutoScalingGroups']:
       print(group['AutoScalingGroupName'])
 
   def scale(self):
