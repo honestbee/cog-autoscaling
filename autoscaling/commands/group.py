@@ -21,7 +21,7 @@ class Group(AutoscalingBase):
   def scale(self):
     response = self.client.set_desired_capacity(
       AutoScalingGroupName = self.request.options["name"],
-      DesiredCapacity = self.request.options["desired"],
+      DesiredCapacity = int(self.request.options["desired"]),
       HonorCooldown = False
     )
     
