@@ -9,7 +9,7 @@ docker:
 commands:
   group:
     description: Manages an autoscaling group
-    executable: /usr/bin/cog-command
+    executable: /usr/local/bin/cog-command
     documentation: |
       Manages an AWS autoscaling group
       autoscaling:group list
