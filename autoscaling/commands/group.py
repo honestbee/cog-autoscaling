@@ -1,6 +1,5 @@
 import boto3
 from autoscaling.commands.base import AutoscalingBase
-import autoscaling.util as util
 
 class Group(AutoscalingBase):
   def __init__(self):
@@ -8,18 +7,19 @@ class Group(AutoscalingBase):
     self.aws_access_key_id = None
     self.aws_secret_access_key = None
     self.region = None
+    self.client = boto3.client('autoscaling')
 
   def run(self):
     handler = self.parse_subcommand_()
     handler()
 
   def list(self):
-    response = util.asg_client.describe_auto_scaling_groups()
+    response = self.client.describe_auto_scaling_groups()
     for group in response['AutoscalingGroups']:
       print(group['AutoScalingGroupName'])
 
   def set_desired(self):
-    response = util.asg_client.set_desired_capacity(
+    response = self.client.set_desired_capacity(
       AutoScalingGroupName = self.request.options["name"],
       DesiredCapacity = self.request.options["desired"],
       HonorCooldown = False
