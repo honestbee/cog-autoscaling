@@ -2,10 +2,12 @@
 cog_bundle_version: 4
 name: autoscaling
 description: Interact with autoscaling in AWS
-version: 0.1.0
+version: 0.1.1
 docker:
   image: quay.io/honestbee/cog-autoscaling
-  tag: 0.1.0
+  tag: 0.1.1
+permissions:
+  - autoscaling:scale
 commands:
   group:
     description: Manages an autoscaling group
@@ -13,15 +15,19 @@ commands:
     documentation: |
       Manages an AWS autoscaling group
       autoscaling:group list
-      autoscaling:group scale -n [autoscaling group name] -d [number of instances]
+      autoscaling:group scale -n [autoscaling group name] -t [elastic beanstalk tag] -d [number of instances]
     options:
       name:
         type: string
         required: false
         short_flag: n
+      tag:
+        type: string
+        required: false
+        short_flag: t
       desired:
         type: int
         required: false
         short_flag: d
     rules:
-      - allow
+      - must have autoscaling:scale
