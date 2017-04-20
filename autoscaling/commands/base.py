@@ -5,7 +5,7 @@ class AutoscalingBase(Command):
     super().__init__()
     self.aws_access_key_id = None
     self.aws_secret_access_key = None
-    self.region = None
+    self.aws_default_region = None
 
   def prepare(self):
     self.aws_access_key_id = self.config("aws_access_key_id")

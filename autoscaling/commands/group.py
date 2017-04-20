@@ -6,7 +6,7 @@ class Group(AutoscalingBase):
     super().__init__()
     self.aws_access_key_id = None
     self.aws_secret_access_key = None
-    self.region = None
+    self.aws_default_region = None
     self.client = boto3.client('autoscaling')
 
   def run(self):
