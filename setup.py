@@ -2,7 +2,7 @@ from distutils.core import setup
 
 setup (
     name = "autoscaling",
-    version = "0.0.10",
+    version = "0.0.11",
     description = "Cog commands for AWS autoscaling",
     author = "Charles Martinot",
     author_email = "charles.martinot@honestbee.com",
