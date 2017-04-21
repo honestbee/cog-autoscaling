@@ -17,7 +17,7 @@ class Group(AutoscalingBase):
     return self.client.describe_auto_scaling_groups()
 
   def get_group_name_by_tag(self):
-    for group in describe_groups():
+    for group in self.describe_groups():
       for tag in g['Tags']:
         if tag['Key'] == "elasticbeanstalk:environment-name" and tag['Value'] == self.request.options['tag']:
           name = group['AutoScalingGroupName']
@@ -26,14 +26,14 @@ class Group(AutoscalingBase):
     return name
 
   def list(self):
-    for group in describe_groups():
+    for group in self.describe_groups():
       print(group['AutoScalingGroupName'])
 
   def scale(self):
     if self.request.options['name']:
       name = self.request.options['name']
     elif self.request.options['tag']:
-      name = get_group_name_by_tag()
+      name = self.get_group_name_by_tag()
     else:
       self.fail("Tag or name unknown or not provided")
 
