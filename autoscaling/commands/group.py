@@ -19,12 +19,30 @@ class Group(AutoscalingBase):
       print(group['AutoScalingGroupName'])
 
   def scale(self):
+    if self.request.options['name']:
+      name = self.request.options['name']
+    elif self.request.options['tag']:
+      name = get_group_name_by_tag()
+    else:
+      self.fail("Tag or name unknown or not provided")
+
     response = self.client.set_desired_capacity(
-      AutoScalingGroupName = self.request.options["name"],
-      DesiredCapacity = int(self.request.options["desired"]),
+      AutoScalingGroupName = name,
+      DesiredCapacity = int(self.request.options['desired']),
       HonorCooldown = False
     )
-    print("Set %s capacity to %s instances" % (self.request.options["name"], self.request.options["desired"]))
+
+    print("Set %s capacity to %s instances" % (self.request.options['name'], self.request.options['desired']))
+
+  def get_group_name_by_tag(self):
+    for group in asg['AutoScalingGroups']:
+      for tag in g['Tags']:
+        if tag['Key'] == "elasticbeanstalk:environment-name" && tag['Value'] == self.request.options['tag']:
+          name = group['AutoScalingGroupName']
+          break
+
+    return name
+
 
   def parse_subcommand_(self):
     if self.request.args == None:
