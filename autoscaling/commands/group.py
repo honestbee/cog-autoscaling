@@ -19,7 +19,7 @@ class Group(AutoscalingBase):
   def get_group_name_by_tag(self):
     for group in describe_groups():
       for tag in g['Tags']:
-        if tag['Key'] == "elasticbeanstalk:environment-name" && tag['Value'] == self.request.options['tag']:
+        if tag['Key'] == "elasticbeanstalk:environment-name" and tag['Value'] == self.request.options['tag']:
           name = group['AutoScalingGroupName']
           break
 
