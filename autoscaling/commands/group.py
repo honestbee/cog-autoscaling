@@ -46,7 +46,7 @@ class Group(AutoscalingBase):
       HonorCooldown = False
     )
 
-    print("Set %s capacity to %s instances" % (self.request.options['name'], self.request.options['desired']))
+    print("Set %s capacity to %s instances" % (name, self.request.options['desired']))
 
   def parse_subcommand_(self):
     if self.request.args == None:
